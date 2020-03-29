@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dashboard</title>
+    <title>World O Meter Clone</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -25,10 +25,14 @@
 
     <div class="row">
         <div class="col-6 col-md-6 col-lg-6">
+            <h2>Events</h2>
+            <input class="form-control" id="eventSearch" type="text" placeholder="Event Search..">
             <ul class="list-group list-group-flush" id="event-list">
             </ul>
         </div>
         <div class="col-6 col-md-6 col-lg-6" >
+            <h2>Live Stats</h2>
+            <input class="form-control" id="statsSearch" type="text" placeholder="StatsSearch..">
             <div class="row" id="stats-area">
 
             </div>
@@ -66,7 +70,7 @@ $( document ).ready( connect );
         function showStats(stat) {
         if($("#" + stat.key).length == 0) {
         $("#stats-area").append(''
-        + '<div class="col-lg-6">'
+        + '<div class="card-area col-lg-6">'
          +       '<div class="card text-white bg-info mb-3" >'
           +          '<div class="card-body">'
             +            '<h5 class="card-title">'+stat.key+'</h5>'
@@ -89,6 +93,24 @@ $( document ).ready( connect );
                 + ' count:' + messageOutput.count
                 + '</li>');
         }
+
+        $(document).ready(function(){
+          $("#eventSearch").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#event-list li").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+
+         $(document).ready(function(){
+          $("#statsSearch").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#stats-area").find(".card-area").filter(function() {
+              $(this).toggle($(this).find(".card-text").attr('id').toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
 
 
 

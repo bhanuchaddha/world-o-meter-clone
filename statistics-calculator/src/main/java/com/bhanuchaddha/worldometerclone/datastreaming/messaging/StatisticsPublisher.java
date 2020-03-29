@@ -18,12 +18,12 @@ public class StatisticsPublisher {
         this.redisCacheTemplate = redisCacheTemplate;
     }
 
-    public void publish(String statisticsKey){
-        redisStatisticsTemplate.convertAndSend(STATISTIC_TOPIC,
+    public void publish(String statisticsKey) {
+        redisStatisticsTemplate.convertAndSend( STATISTIC_TOPIC,
                 StatisticsMessage.builder()
                         .key(statisticsKey)
                         .value(redisCacheTemplate.opsForValue().get(statisticsKey))
                         .build()
-                );
+        );
     }
 }

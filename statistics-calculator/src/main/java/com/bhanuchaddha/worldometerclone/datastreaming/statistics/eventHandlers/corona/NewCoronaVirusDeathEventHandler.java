@@ -1,11 +1,10 @@
-package com.bhanuchaddha.worldometerclone.datastreaming.statistics.eventHandlers;
+package com.bhanuchaddha.worldometerclone.datastreaming.statistics.eventHandlers.corona;
 
 import com.bhanuchaddha.worldometerclone.datastreaming.data.StatisticsRepository;
 import com.bhanuchaddha.worldometerclone.datastreaming.messaging.StatisticsPublisher;
 import com.bhanuchaddha.worldometerclone.datastreaming.model.EventType;
 import com.bhanuchaddha.worldometerclone.datastreaming.model.Event;
 import com.bhanuchaddha.worldometerclone.datastreaming.statistics.EventHandler;
-import com.bhanuchaddha.worldometerclone.datastreaming.statistics.StatisticsKeyFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +20,7 @@ public class NewCoronaVirusDeathEventHandler implements EventHandler {
 
     @Override
     public void handle(Event event) {
-        StatisticsKeyFactory kf = new StatisticsKeyFactory(event.getCountry(), event.getCity());
+        CoronaStatisticsKeyFactory kf = new CoronaStatisticsKeyFactory(event.getCountry(), event.getCity());
 
         statisticsRepository.increment(kf.getWorldTotalDeathKey(), event.getCount());
         statisticsRepository.decrement(kf.getWorldTotalActiveKey(), event.getCount());

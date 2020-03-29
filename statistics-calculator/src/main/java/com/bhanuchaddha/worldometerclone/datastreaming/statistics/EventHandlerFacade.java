@@ -17,7 +17,7 @@ public class EventHandlerFacade implements EventHandler {
     @Autowired
     public EventHandlerFacade(List<EventHandler> eventHandlerList) {
         this.eventHandlers = eventHandlerList.stream()
-                .collect(Collectors.toMap(EventHandler::handles, e-> e ));
+                .collect(Collectors.toMap(EventHandler::handles, e -> e));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.bhanuchaddha.worldometerclone.datastreaming.statistics;
+package com.bhanuchaddha.worldometerclone.datastreaming.statistics.eventHandlers.corona;
 
 import lombok.AllArgsConstructor;
 
@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
-public class StatisticsKeyFactory {
+public class CoronaStatisticsKeyFactory {
     private String country;
     private String city;
 
